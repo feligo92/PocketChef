@@ -1,0 +1,20 @@
+.myBody {
+ background-color: aqua;   
+ /* background-image: url("http://blog.flota.es/wp-content/uploads/2017/09/diez-tipos-de-pasta-que-deberias-conocer.jpg"); */
+}
+
+.myCard{
+    height: 80vh;
+    margin-top: 20vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+
+.cardText{
+    margin-top: 10vh;
+}
+
+.myButton{
+margin-left: 20vw!important;
+}
