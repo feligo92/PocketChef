@@ -1,9 +1,23 @@
-<div class="row ">
-        <div class="col-12 mt-3 mb-3" *ngFor="let receta of arrRecetas, let i = index">
-            <div class="card" style="width: 80%;">
+<div class="myBody">
+    <nav class="navbar myNavbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1 text-center">  PocketChef  <img  class="float-left" style="width: 7vw;" src="https://image.flaticon.com/icons/svg/129/129226.svg"></span>
+       
+    </nav>
+    <div class="row myContainer ">
+        <div class="col-11 offset-1 mt-3 mb-3" *ngFor="let receta of arrRecetas, let i = index">
+            <div class="card" style="width: 100%;" routerLink="/receta/{{receta['_id']}}">
 
-               <p>{{receta['nombre']}}</p>
-               
+                <p class="text-center mt-3">{{receta['nombre']}}</p>
+
             </div>
         </div>
     </div>
+</div>
+
+<footer class="footer myFooter bg-info">
+        <div class="row">
+            <div class="col-1 offset-5 mt-2 mb-3">
+                <img class="footerIcon" routerLink="/home" src="https://image.flaticon.com/icons/svg/263/263115.svg">
+            </div>
+        </div>
+    </footer>

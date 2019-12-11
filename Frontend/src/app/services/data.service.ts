@@ -13,11 +13,11 @@ export class DataService {
 
   constructor(public _http: HttpClient) { }
   //LLAMADA HTTP GET
-  llamadaGet() {
+  llamadaGet(url) {
 
     this._http.get(
       //Argumento 1: La URL
-     "http://localhost:3000/receta",
+     url,
       //Argumento 2: Las opciones con los headers
       { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
     )

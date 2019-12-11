@@ -23,7 +23,7 @@ export class ListaComponent implements OnInit {
     )
 
     if (Object.entries(this.arrRecetas).length === 0){
-      this._data.llamadaGet();
+      this._data.llamadaGet(`http://localhost:3000/receta`);
     } else {
       this.arrRecetas = this._data.recetas;
      

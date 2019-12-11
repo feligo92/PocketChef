@@ -1,0 +1,35 @@
+<div class="myBody">
+    <nav class="navbar myNavbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1 text-center"> PocketChef <img class="float-left" style="width: 7vw;"
+                src="https://image.flaticon.com/icons/svg/129/129226.svg"></span>
+
+    </nav>
+
+
+    <div class="row receta">
+        <div class="col-12 "style="  padding:0px;">
+            <div class="card" style="width: 100%;">
+
+                <img src="{{singleReceta[0]['imgUrl']}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        {{singleReceta[0]['nombre']}} </h3>
+                    <h6 class="card-subtitle bold">De: {{singleReceta[0]['autor']['userName']}}</h6>
+                    <hr>
+                    <p>{{singleReceta[0]['instrucciones']}} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<footer class="footer myFooter bg-info">
+    <div class="row">
+        <div class="col-1 offset-5 mt-2 mb-3">
+            <img class="footerIcon" routerLink="/home" src="https://image.flaticon.com/icons/svg/263/263115.svg">
+        </div>
+    </div>
+</footer>

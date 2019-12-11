@@ -32,7 +32,8 @@ const recetaEsquema = new mongoose.Schema({
         type: types.ObjectId,
         ref: 'User',
         autopopulate: true,
-    }
+    },
+    imgUrl: String
 })
 
 recetaEsquema.plugin(mongooseAutopopulate);

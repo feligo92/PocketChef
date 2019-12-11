@@ -17,7 +17,7 @@
 }
 
 .myContainer{
-    margin-top: 56px;
+    margin-top: 50px;
     margin-bottom: 50px;
     max-width: 100%;
 }
@@ -26,4 +26,12 @@
     background-repeat: repeat-y;
     background-image: url("http://blog.flota.es/wp-content/uploads/2017/09/diez-tipos-de-pasta-que-deberias-conocer.jpg");
    
+}
+
+.receta{
+  
+    margin-left: 0px;
+    margin-top: 56px;
+    margin-bottom: 50px;
+    max-width: 100%;
 }

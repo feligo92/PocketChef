@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserService } from './services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import { ListaComponent } from './views/lista/lista.component';
+import { RecetaComponent } from './views/receta/receta.component';
 
 
 
@@ -17,6 +18,7 @@ const routerConfig: Routes = [
   {"path": "home", "component": HomeComponent},
   {"path": "onboarding", "component": OnboardingComponent},
   {"path": "lista", "component": ListaComponent},
+  { "path": "receta/:id", "component": RecetaComponent },
   { "path": "login", "component":  LoginComponent },
   { "path": "**", "component": HomeComponent}
 
@@ -29,7 +31,8 @@ const routerConfig: Routes = [
     OnboardingComponent,
     LoginComponent,
     HomeComponent,
-    ListaComponent
+    ListaComponent,
+    RecetaComponent
   ],
   imports: [
     BrowserModule,
