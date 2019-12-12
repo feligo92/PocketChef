@@ -10,7 +10,7 @@ export class DataService {
 
   data: Subject<object[]> = new Subject<object[]>();
   recetas: object[] = [];
-
+  allIngredientes:  Subject<object[]> = new Subject<object[]>();
   constructor(public _http: HttpClient) { }
   //LLAMADA HTTP GET
   llamadaGet(url) {
@@ -34,7 +34,7 @@ export class DataService {
 
     this._http.post(
       //Argumento 1: La URL
-      "https://reqres.in/api/register",
+      "http://localhost:3000/receta",
       //Argumento 2: Body
      data
      ,
@@ -53,6 +53,22 @@ export class DataService {
         (error: object) => {
 
          
+        }
+      )
+  }
+
+
+  getIngredientes(){
+    this._http.get(
+      //Argumento 1: La URL
+     'http://localhost:3000/ingrediente',
+      //Argumento 2: Las opciones con los headers
+      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
+    )
+      //Nos suscribimos a la llamada
+      .subscribe(
+        (result: any) => {
+          this.allIngredientes.next(result); this.allIngredientes = result; console.log(this.allIngredientes)
         }
       )
   }

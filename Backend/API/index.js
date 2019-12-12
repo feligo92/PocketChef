@@ -103,7 +103,9 @@ mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluste
                     if (same) {
 
                         const token = jwt.sign({ "mail": req.body.mail }, secrets["jwt_clave"]);
+                        
                         res.header('Set-Cookie', `jwt=${token}; httponly; maxAge: 99999`);
+                        // res.header('Set-Cookie', `logued=true; maxAge: 99999`);
                         res.send({ "logged": true })
                     } else {
                         res.send({ "Error": "Incorrect password" })

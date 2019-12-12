@@ -35,7 +35,7 @@ export class UserService {
 
           this.data = result;
           console.log(this.data)
-          
+          ///////////set item here
         }, (error: object) => {
           this.loginError.next(error);
 

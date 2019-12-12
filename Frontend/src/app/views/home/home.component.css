@@ -1,0 +1,33 @@
+.myNavbar{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 9;
+}
+
+.footerIcon{
+    width: 10vw;
+}
+
+.myFooter{
+
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.myContainer{
+    margin-top: 56px;
+    margin-bottom: 50px;
+    max-width: 100%;
+}
+
+.myBody{
+    position:fixed;
+    z-index: -1;
+    height: 83vh;
+    width: 100vw;
+    background-size: cover;
+    background-image: url("http://blog.flota.es/wp-content/uploads/2017/09/diez-tipos-de-pasta-que-deberias-conocer.jpg");
+   
+}

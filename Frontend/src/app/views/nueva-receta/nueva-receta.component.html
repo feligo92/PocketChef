@@ -9,7 +9,7 @@
 <div class="container" style="margin-top: 70px; margin-bottom: 70px;">
     <div class="row">
         <div class="col-12">
-            <form #myForm="ngForm" (ngSubmit)="sendData(myForm)">
+            <form #myForm="ngForm" autocomplete="off" (ngSubmit)="sendData(myForm)">
                 <div class="row">
                     <div class="col-12">
                         <!--Nombre-->
@@ -21,24 +21,40 @@
                             <small *ngIf="name.invalid && name.dirty" class="form-text error">Introduce un nombre
                                 válido</small>
                             <small *ngIf="name.invalid && name.touched && name.pristine" class="form-text error">Este
-                                campo es obligatório</small>
+                                campo es obligatorio</small>
 
                         </div>
                     </div>
                 </div>
+{{this.ingredientesParaMandar}}
 
                 <br>
-               
+                <div class="row">
+                    <!--INGREDIENTES-->
+                    <div class="autocomplete col-12">
+                        <label for="ingredientesInput">Ingredientes</label>
+                        <input id="ingredientesInput" class="form-control" type="text"
+                            (keypress)="addIngrediente($event)" name="ingredientesReceta" placeholder="Arroz" required
+                            pattern="[A-zÀ-ú]*">
+                    </div>
+                </div>
+
+
+                <br>
+
+
+                <!--CANTIDADES-->
                 <div class="row">
                     <div class="col-12">
                         <label for="cantidadesInput">Cantidades</label>
-                        <input type="text" class="form-control" name="cantidadesReceta" id="cantidadesInput"
-                            placeholder="Arroz 100g" required pattern="[A-zÀ-ú]*">
+                        <!--EVENT KEYPRESS--> <input type="text" class="form-control" (keypress)="addCantidad($event);"
+                            name="cantidadesReceta" id="cantidadesInput" placeholder="Arroz 100g" required
+                            pattern="[A-zÀ-ú]*">
                         <small *ngIf="name.invalid && name.dirty" class="form-text error">Introduce un texto
                             válido</small>
                         <small *ngIf="name.invalid && name.touched && name.pristine" class="form-text error">Este
-                            campo es obligatório</small>
-                        <button type="reset" class="btn btn-secondary mr-3" (click)="addCantidad()">añadir</button>
+                            campo es obligatorio</small>
+
 
                         <div class="cantidades row" *ngFor="let cantidad of cantidades, let i = index">
 
@@ -52,27 +68,27 @@
 
                 </div>
                 <br>
-              
+
 
 
                 <div class="row">
                     <div class="col-12">
-                        <!--DESCRIPCION-->
+                        <!--Elaboración-->
                         <div class="form-group">
                             <label for="descripcion"> Elaboración </label>
-                            <textarea [(ngModel)]="formData['descripcion']" maxlength="10000" required
+                            <textarea [(ngModel)]="formData['instrucciones']" maxlength="10000" required
                                 name="descripcion" class="form-control" id="isla" aria-describedby="descriptionHelp"
                                 placeholder="..." #descripcion="ngModel">
                                     </textarea>
                             <small *ngIf="descripcion.touched && descripcion.pristine" class="form-text error">Este
-                                campo es obligatório</small>
+                                campo es obligatorio</small>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 offset-4">
-                        <button type="reset" class="btn btn-secondary mr-3">Reset</button>
-                        <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+
+                        <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary ml-2">Guardar</button>
                     </div>
                 </div>
 
