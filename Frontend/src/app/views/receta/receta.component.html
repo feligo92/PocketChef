@@ -7,7 +7,7 @@
 
 
     <div class="row receta">
-        <div class="col-12 "style="  padding:0px;">
+        <div class="col-12 " style="  padding:0px;">
             <div class="card" style="width: 100%;">
 
                 <img src="{{singleReceta[0]['imgUrl']}}" class="card-img-top" alt="...">
@@ -16,6 +16,14 @@
                         {{singleReceta[0]['nombre']}} </h3>
                     <h6 class="card-subtitle bold">De: {{singleReceta[0]['autor']['userName']}}</h6>
                     <hr>
+                    <h5>Ingredientes:</h5>
+
+                    <div class="mt-1" *ngFor="let cantidad of cantidades, let i = index">
+
+                        <p class=" cantidades mt-1"> {{cantidad}}</p>
+                    </div>
+                    <hr>
+                    <h5>Elaboración:</h5>
                     <p>{{singleReceta[0]['instrucciones']}} </p>
                 </div>
             </div>
@@ -28,7 +36,10 @@
 
 <footer class="footer myFooter bg-info">
     <div class="row">
-        <div class="col-1 offset-5 mt-2 mb-3">
+        <div class="col-1 offset-2 mt-2 mb-3">
+            <img class="footerIcon" routerLink="/lista" src="https://image.flaticon.com/icons/svg/263/263085.svg">
+        </div>
+        <div class="col-1 offset-2 mt-2 mb-3">
             <img class="footerIcon" routerLink="/home" src="https://image.flaticon.com/icons/svg/263/263115.svg">
         </div>
     </div>

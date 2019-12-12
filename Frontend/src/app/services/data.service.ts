@@ -28,4 +28,32 @@ export class DataService {
         }
       )
   }
+
+
+  sendData(data: object): void {
+
+    this._http.post(
+      //Argumento 1: La URL
+      "https://reqres.in/api/register",
+      //Argumento 2: Body
+     data
+     ,
+      //Argumento 3: Las opciones con los headers
+      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
+    )
+      //Nos suscribimos a la llamada
+      .subscribe(
+
+        (result: object) => {
+          // Handle result
+          
+          }
+
+        ,
+        (error: object) => {
+
+         
+        }
+      )
+  }
 }

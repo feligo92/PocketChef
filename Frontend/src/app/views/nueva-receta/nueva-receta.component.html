@@ -1,0 +1,91 @@
+<div class="myBod">
+</div>
+<nav class="navbar myNavbar navbar-light bg-info">
+    <span class="navbar-brand mb-0 h1 text-center"> PocketChef <img class="float-left" style="width: 7vw;"
+            src="https://image.flaticon.com/icons/svg/129/129226.svg"></span>
+
+</nav>
+<!--FORMULARIO-->
+<div class="container" style="margin-top: 70px; margin-bottom: 70px;">
+    <div class="row">
+        <div class="col-12">
+            <form #myForm="ngForm" (ngSubmit)="sendData(myForm)">
+                <div class="row">
+                    <div class="col-12">
+                        <!--Nombre-->
+                        <div class="form-group">
+                            <label for="nameInput">Nombre del plato</label>
+                            <input [(ngModel)]="formData['nombre']" name="nombreReceta" type="text" class="form-control"
+                                id="nameInput" placeholder="Introduce el nombre" #name="ngModel" required
+                                pattern="[A-zÀ-ú]*">
+                            <small *ngIf="name.invalid && name.dirty" class="form-text error">Introduce un nombre
+                                válido</small>
+                            <small *ngIf="name.invalid && name.touched && name.pristine" class="form-text error">Este
+                                campo es obligatório</small>
+
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+               
+                <div class="row">
+                    <div class="col-12">
+                        <label for="cantidadesInput">Cantidades</label>
+                        <input type="text" class="form-control" name="cantidadesReceta" id="cantidadesInput"
+                            placeholder="Arroz 100g" required pattern="[A-zÀ-ú]*">
+                        <small *ngIf="name.invalid && name.dirty" class="form-text error">Introduce un texto
+                            válido</small>
+                        <small *ngIf="name.invalid && name.touched && name.pristine" class="form-text error">Este
+                            campo es obligatório</small>
+                        <button type="reset" class="btn btn-secondary mr-3" (click)="addCantidad()">añadir</button>
+
+                        <div class="cantidades row" *ngFor="let cantidad of cantidades, let i = index">
+
+                            <div class="col-12">
+                                <p class="cantidades">· {{cantidad}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <br>
+              
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <!--DESCRIPCION-->
+                        <div class="form-group">
+                            <label for="descripcion"> Elaboración </label>
+                            <textarea [(ngModel)]="formData['descripcion']" maxlength="10000" required
+                                name="descripcion" class="form-control" id="isla" aria-describedby="descriptionHelp"
+                                placeholder="..." #descripcion="ngModel">
+                                    </textarea>
+                            <small *ngIf="descripcion.touched && descripcion.pristine" class="form-text error">Este
+                                campo es obligatório</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 offset-4">
+                        <button type="reset" class="btn btn-secondary mr-3">Reset</button>
+                        <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer myFooter bg-info">
+    <div class="row">
+        <div class="col-1 offset-5 mt-2 mb-3">
+            <img class="footerIcon" routerLink="/home" src="https://image.flaticon.com/icons/svg/263/263115.svg">
+        </div>
+    </div>
+</footer>

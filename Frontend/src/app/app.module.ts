@@ -10,7 +10,8 @@ import { UserService } from './services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import { ListaComponent } from './views/lista/lista.component';
 import { RecetaComponent } from './views/receta/receta.component';
-
+import { NuevaRecetaComponent } from './views/nueva-receta/nueva-receta.component';
+import { FormsModule} from '@angular/forms';
 
 
 const routerConfig: Routes = [
@@ -18,6 +19,7 @@ const routerConfig: Routes = [
   {"path": "home", "component": HomeComponent},
   {"path": "onboarding", "component": OnboardingComponent},
   {"path": "lista", "component": ListaComponent},
+  {"path": "nuevareceta", "component":  NuevaRecetaComponent},
   { "path": "receta/:id", "component": RecetaComponent },
   { "path": "login", "component":  LoginComponent },
   { "path": "**", "component": HomeComponent}
@@ -32,11 +34,13 @@ const routerConfig: Routes = [
     LoginComponent,
     HomeComponent,
     ListaComponent,
-    RecetaComponent
+    RecetaComponent,
+    NuevaRecetaComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routerConfig, { useHash: true })
   ],
   providers: [UserService],

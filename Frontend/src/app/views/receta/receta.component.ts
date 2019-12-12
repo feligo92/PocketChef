@@ -14,6 +14,7 @@ export class RecetaComponent implements OnInit {
   data: object[] = this._data.recetas
   singleReceta: object = {};
   id: string;
+  cantidades: string[];
 
   constructor( public _data: DataService, public _path: ActivatedRoute) { }
 
@@ -26,6 +27,7 @@ export class RecetaComponent implements OnInit {
       this.singleReceta  = this.data.filter(obj => {
         return obj['_id'] === this.id
       })
+     this.cantidades = this.singleReceta[0]['cantidades']
       
     }
 
@@ -35,6 +37,7 @@ export class RecetaComponent implements OnInit {
         this.singleReceta  = this.data.filter(obj => {
           return obj['_id'] === this.id
         })
+       this.cantidades = this.singleReceta[0]['cantidades']
         console.log(this.singleReceta)
       }
     )

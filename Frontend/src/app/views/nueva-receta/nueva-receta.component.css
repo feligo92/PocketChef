@@ -17,23 +17,33 @@
 }
 
 .myContainer{
-    margin-top: 50px;
+    margin-top: 56px;
     margin-bottom: 50px;
     max-width: 100%;
 }
 
 .myBody{
-    background-repeat: repeat-y;
+    position:fixed;
+    z-index: -1;
+    height: 83vh;
+    width: 100vw;
+    background-size: cover;
     background-image: url("http://blog.flota.es/wp-content/uploads/2017/09/diez-tipos-de-pasta-que-deberias-conocer.jpg");
    
 }
 
-.receta{
+input.ng-invalid.ng-touched{
+    border-left: 5px solid red
+}
+
+small.error{
+    color: #af1827;
+    font-weight: bold;
+}
+
+#plusButton{
+    position: absolute;
   
-    margin-left: 0px;
-    margin-top: 56px;
-    margin-bottom: 50px;
-    max-width: 100%;
 }
 
 .cantidades{
