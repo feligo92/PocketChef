@@ -3,7 +3,9 @@
     width: 100%;
     top: 0;
     z-index: 9;
+    background-color: #6d8eb2;
 }
+
 
 .footerIcon{
     width: 10vw;
@@ -14,7 +16,9 @@
     position: fixed;
     width: 100%;
     bottom: 0;
+    background-color: #6d8eb2;
 }
+
 
 .myContainer{
     margin-top: 56px;
@@ -28,6 +32,10 @@
     height: 83vh;
     width: 100vw;
     background-size: cover;
-    background-image: url("http://blog.flota.es/wp-content/uploads/2017/09/diez-tipos-de-pasta-que-deberias-conocer.jpg");
+    background-image: url("https://www.diabetes.org/sites/default/files/styles/paragraph_50_50/public/2019-06/understandingcarbs-desktop-5050.jpg");
    
+}
+
+.myFont{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

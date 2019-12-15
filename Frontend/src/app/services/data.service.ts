@@ -11,7 +11,17 @@ export class DataService {
   data: Subject<object[]> = new Subject<object[]>();
   recetas: object[] = [];
   allIngredientes:  Subject<object[]> = new Subject<object[]>();
-  constructor(public _http: HttpClient) { }
+
+  constructor(public _http: HttpClient) {
+
+   }
+
+   ngOnInit() {
+
+    this.allIngredientes = new Subject<object[]>();
+
+   }
+
   //LLAMADA HTTP GET
   llamadaGet(url) {
 

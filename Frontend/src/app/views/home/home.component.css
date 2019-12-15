@@ -3,6 +3,7 @@
     width: 100%;
     top: 0;
     z-index: 9;
+    background-color: #6d8eb2;
 }
 
 .footerIcon{
@@ -14,6 +15,7 @@
     position: fixed;
     width: 100%;
     bottom: 0;
+    background-color: #6d8eb2;
 }
 
 .myContainer{
@@ -30,4 +32,18 @@
     background-size: cover;
     background-image: url("http://blog.flota.es/wp-content/uploads/2017/09/diez-tipos-de-pasta-que-deberias-conocer.jpg");
    
+}
+.nuevaReceta{
+    position: fixed;
+    bottom: 60px;
+    max-width: 100%;
+}
+
+.listaReceta{
+    position: fixed;
+    bottom: 160px;
+    max-width: 100%;
+}
+.myFont{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

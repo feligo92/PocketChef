@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { DataService } from 'src/app/services/data.service';
 import { FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-nueva-receta',
@@ -13,7 +13,7 @@ export class NuevaRecetaComponent implements OnInit {
 
   subscription: Subscription;
   cantidades: string[] = [];
- 
+
 
   formData: object = {
     nombre: "",
@@ -29,7 +29,15 @@ export class NuevaRecetaComponent implements OnInit {
 
   constructor(public _user: UserService, public _data: DataService) {
 
+
     this._data.getIngredientes()
+
+  }
+
+  ngOnInit() {
+
+
+    this._data.allIngredientes = new Subject<object[]>();
 
     this.subscription = this._data.allIngredientes.subscribe(
       (newValue) => {
@@ -37,7 +45,7 @@ export class NuevaRecetaComponent implements OnInit {
         console.log(this.allIngredientes, newValue)
         for (let i = 0; i < this.allIngredientes.length; i++) {
           this.arrNombresIngredientes.push(this.allIngredientes[i]['ingredienteName'])
-        
+
         }
         function autocomplete(inp, arr) {
           /*the autocomplete function takes two arguments,
@@ -142,13 +150,6 @@ export class NuevaRecetaComponent implements OnInit {
     )
 
 
-  }
-
-  ngOnInit() {
-
-
-
-
 
   }
 
@@ -182,24 +183,23 @@ export class NuevaRecetaComponent implements OnInit {
           return obj['ingredienteName'] === ingrediente
         })
 
-        if (ingredienteID !== undefined)
+        if (ingredienteID !== undefined) {
           this.ingredientesParaMandar.push(ingredienteID[0]['_id'])
-        else console.log("Ingrediente no encontrado")
-        console.log("Ingrediente encontrado " , ingredienteID)
+
+        } else {
+          console.log("Ingrediente no encontrado")
+        }
+        (<HTMLInputElement>document.querySelector("#cantidadesInput")).value = '';
+        (<HTMLInputElement>document.querySelector("#ingredientesInput")).value = '';
+        console.log("Ingrediente encontrado ", ingredienteID)
       }
-      
+
       event.preventDefault();
     }
   }
 
-  addIngrediente(event) {
 
-    if (event['keyCode'] == 13) {
-      let ingrediente: string = (<HTMLInputElement>document.querySelector("#ingredientesInput")).value;
-      let flag: boolean = this.arrNombresIngredientes.includes(ingrediente)
-      if (ingrediente !== '' && flag == true) {
-        this.ingredientes.push(ingrediente)
-      }
-    }
-  }
+
+
+
 }

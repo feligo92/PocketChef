@@ -1,22 +1,22 @@
 <div class="myBody">
 </div>
-<nav class="navbar myNavbar navbar-light bg-info">
-    <span class="navbar-brand mb-0 h1 text-center"> PocketChef <img class="float-left" style="width: 7vw;"
+<nav class="navbar myNavbar navbar-light ">
+    <span class="navbar-brand mb-0 h1 text-center myFont text-light"> PocketChef <img class="float-left" style="width: 7vw;"
             src="https://image.flaticon.com/icons/svg/129/129226.svg"></span>
 
 </nav>
 <div class="row myContainer ">
     <div class="col-11 offset-1 mt-3 mb-3" *ngFor="let receta of arrRecetas, let i = index">
-        <div class="card" style="width: 100%; height: 12vh; margin-left: 0px" routerLink="/receta/{{receta['_id']}}">
+        <div class="card" style="width: 100%; height: 12vh; margin-left: 0px; border-radius: 31px; background-color:#c8e3ffde;" routerLink="/receta/{{receta['_id']}}">
 
-            <p class="text-center mt-4">{{receta['nombre']}}</p>
+            <p class="text-center mt-4 myFont">{{receta['nombre']}}</p>
 
         </div>
     </div>
 </div>
 
 
-<footer class="footer myFooter bg-info">
+<footer class="footer myFooter ">
     <div class="row">
         <div class="col-1 offset-5 mt-2 mb-3">
             <img class="footerIcon" routerLink="/home" src="https://image.flaticon.com/icons/svg/263/263115.svg">

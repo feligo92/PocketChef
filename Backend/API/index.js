@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken')
 const jwtChecker = require('express-jwt')
 const cors = require('cors');//liberia cors
 const cookieParser = require('cookie-parser');//libreria para parsear cookies
+const helmet = require('helmet');
 
 //========== MODELS ==============
 const User = require('./models/user');
@@ -30,7 +31,13 @@ const server = express();
 server.use(bodyParser.json());
 server.use(cors());
 server.use(cookieParser());
-
+server.use(helmet());
+server.use(jwtChecker({   //como argumento le pasamos un objeto con la configuración
+    secret: secrets["jwt_clave"],    //clave de la firma
+    getToken: (req) => {   //funcion para obtener las cookies
+        return req.cookies['jwt']; //devuelve la cookie con esa clave
+    }
+}).unless({ path: ['/register', '/login'] }))//objeto clave path valor array de strings con todos los paths en que no se le exige la cookie
 
 
 // ====== Conexion con la DB y endpoints =============

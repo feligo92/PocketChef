@@ -1,6 +1,6 @@
 <div class="myBody">
-    <nav class="navbar myNavbar navbar-light bg-info">
-        <span class="navbar-brand mb-0 h1 text-center"> PocketChef <img class="float-left" style="width: 7vw;"
+    <nav class="navbar myNavbar navbar-light"> 
+        <span class="navbar-brand mb-0 h1 text-center text-light myFont"> PocketChef <img class="float-left" style="width: 7vw;"
                 src="https://image.flaticon.com/icons/svg/129/129226.svg"></span>
 
     </nav>
@@ -11,20 +11,20 @@
             <div class="card" style="width: 100%;">
 
                 <img src="{{singleReceta[0]['imgUrl']}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h3 class="card-title">
+                <div class="card-body" style="background-color: #dae9f6;">
+                    <h3 class="card-title myFont">
                         {{singleReceta[0]['nombre']}} </h3>
-                    <h6 class="card-subtitle bold">De: {{singleReceta[0]['autor']['userName']}}</h6>
+                    <h6 class="card-subtitle bold myFont">De: {{singleReceta[0]['autor']['userName']}}</h6>
                     <hr>
-                    <h5>Ingredientes:</h5>
+                    <h5 clss="myFont">Ingredientes:</h5>
 
                     <div class="mt-1" *ngFor="let cantidad of cantidades, let i = index">
 
-                        <p class=" cantidades mt-1"> {{cantidad}}</p>
+                        <p class=" cantidades mt-1 myFont"> {{cantidad}}</p>
                     </div>
                     <hr>
-                    <h5>Elaboración:</h5>
-                    <p>{{singleReceta[0]['instrucciones']}} </p>
+                    <h5 clss="myFont">Elaboración:</h5>
+                    <p class="myFont">{{singleReceta[0]['instrucciones']}} </p>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
 
 
 
-<footer class="footer myFooter bg-info">
+<footer class="footer myFooter">
     <div class="row">
         <div class="col-1 offset-2 mt-2 mb-3">
             <img class="footerIcon" routerLink="/lista" src="https://image.flaticon.com/icons/svg/263/263085.svg">

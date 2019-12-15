@@ -1,8 +1,10 @@
+
 .myNavbar{
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 9;
+    background-color: #6d8eb2;
 }
 
 .footerIcon{
@@ -14,6 +16,7 @@
     position: fixed;
     width: 100%;
     bottom: 0;
+    background-color: #6d8eb2;
 }
 
 .myContainer{
@@ -25,10 +28,10 @@
 .myBody{
     position:fixed;
     z-index: -1;
-    height: 83vh;
+    height: 100vh;
     width: 100vw;
     background-size: cover;
-    background-image: url("http://blog.flota.es/wp-content/uploads/2017/09/diez-tipos-de-pasta-que-deberias-conocer.jpg");
+    background-color: #dae9f6;
    
 }
 
@@ -81,4 +84,8 @@ small.error{
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
   color: #ffffff;
+}
+
+.tuLista{
+    background-color: white;;
 }

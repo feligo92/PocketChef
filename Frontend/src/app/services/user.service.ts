@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ export class UserService {
   error: object;
   loginError: any
   dataSign: object;
-
-  constructor( public _http: HttpClient) { 
+  isLogged:string = '';
+  
+  constructor( public _http: HttpClient, public _router: Router) { 
 
   }
 
@@ -35,6 +37,13 @@ export class UserService {
 
           this.data = result;
           console.log(this.data)
+          if(this.data['logged'] == true){
+            this.isLogged = '7ras9AS2hk';
+          if (typeof (Storage) !== 'undefined') {
+          localStorage.setItem("98asdqLKjs8", this.isLogged)
+          this._router.navigateByUrl('/home');
+        }
+          }
           ///////////set item here
         }, (error: object) => {
           this.loginError.next(error);
