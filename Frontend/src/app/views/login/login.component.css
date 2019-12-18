@@ -83,3 +83,12 @@
 .myFont{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+input.ng-invalid.ng-touched{
+    border-bottom: 5px solid red
+}
+
+small.error{
+    color: #af1827;
+    font-weight: bold;
+}

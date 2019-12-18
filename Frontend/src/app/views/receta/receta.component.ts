@@ -16,7 +16,7 @@ export class RecetaComponent implements OnInit {
   id: string;
   cantidades: string[];
 
-  constructor( public _data: DataService, public _path: ActivatedRoute) { }
+  constructor(public _data: DataService, public _path: ActivatedRoute) { }
 
   ngOnInit() {
     console.log("hola")
@@ -24,23 +24,38 @@ export class RecetaComponent implements OnInit {
     if (Object.entries(this.data).length === 0) {
       this._data.llamadaGet(`http://localhost:3000/receta/${this.id}`);
     } else {
-      this.singleReceta  = this.data.filter(obj => {
+      this.singleReceta = this.data.filter(obj => {
         return obj['_id'] === this.id
       })
-     this.cantidades = this.singleReceta[0]['cantidades']
-      
+      this.cantidades = this.singleReceta[0]['cantidades']
+
     }
 
     this.subscription = this._data.data.subscribe(
       (newValue) => {
         this.data = newValue;
-        this.singleReceta  = this.data.filter(obj => {
+        this.singleReceta = this.data.filter(obj => {
           return obj['_id'] === this.id
         })
-       this.cantidades = this.singleReceta[0]['cantidades']
+        this.cantidades = this.singleReceta[0]['cantidades']
         console.log(this.singleReceta)
       }
     )
   }
 
+
+  puntuar() {
+    
+    if (localStorage.getItem(`pnt${this.id}`) == null) {
+      if (typeof (Storage) !== 'undefined') {
+        localStorage.setItem(`pnt${this.id}`, "alrd")
+        this.singleReceta[0]['puntuacion']++;
+      }
+    }
+
+
+
+    
+     this._data.puntuarPut(`http://localhost:3000/receta`, this.singleReceta)
+  }
 }

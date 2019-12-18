@@ -10,6 +10,10 @@ const jwtChecker = require('express-jwt')
 const cors = require('cors');//liberia cors
 const cookieParser = require('cookie-parser');//libreria para parsear cookies
 const helmet = require('helmet');
+const multer = require('multer');
+const path = require('path');
+
+const fileUpload = require('express-fileupload');
 
 //========== MODELS ==============
 const User = require('./models/user');
@@ -37,12 +41,33 @@ server.use(jwtChecker({   //como argumento le pasamos un objeto con la configura
     getToken: (req) => {   //funcion para obtener las cookies
         return req.cookies['jwt']; //devuelve la cookie con esa clave
     }
-}).unless({ path: ['/register', '/login'] }))//objeto clave path valor array de strings con todos los paths en que no se le exige la cookie
+}).unless({ path: ['/register', '/login', '/upload'] }))//objeto clave path valor array de strings con todos los paths en que no se le exige la cookie
+
+
+
+//Subida de imágenes
+const storageManager = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, './uploads')
+    },
+    filename: (req, file, callback) => {
+        callback(null, file.originalname)
+    }
+});
+
+const upload = multer({ storage: storageManager })
+
 
 
 // ====== Conexion con la DB y endpoints =============
 mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluster0-4n2wo.mongodb.net/pocketchef?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => { //primer argumento url de la DB, segundo (err)=>{} los endpoints y el listen irá dentro de la callback
     if (err) throw err;
+
+    //Endpoint de subida de imágenes
+    server.post('/upload', upload.single('myImg'), (req, res) => {
+        console.log(req.file.filename)
+        res.send({ "ok": req.file.filename })
+    })
 
     console.log("Conexión con mongo completada!".yellow)
 
@@ -78,14 +103,27 @@ mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluste
             if (data.length > 0) {
                 res.send({ "error": "Este email ya tiene una cuenta asociada" })
             } else {
-                bcrypt.hash(req.body.password, 11, (err, hash) => {
-                    if (err) throw err
-                    body.password = hash
-                    const miUser = new User(body);
-                    miUser.save((err) => {
-                        if (err) res.send(err);
-                        res.send({ "ok": miUser })
-                    })
+                User.find({ userName: body['userName'] }, (err, result) => {
+
+                    if (err) throw err;
+                    if (result.length > 0) {
+
+                        res.send({ "error": "Nombre de usuario no disponible" })
+                    } else {
+
+                        bcrypt.hash(req.body.password, 11, (err, hash) => {
+                            if (err) throw err
+                            body.password = hash
+                            const miUser = new User(body);
+                            miUser.save((err) => {
+                                if (err) res.send(err);
+                                res.send({ "ok": miUser })
+                            })
+                        })
+
+                    }
+
+
                 })
 
             }
@@ -110,7 +148,7 @@ mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluste
                     if (same) {
 
                         const token = jwt.sign({ "mail": req.body.mail }, secrets["jwt_clave"]);
-                        
+
                         res.header('Set-Cookie', `jwt=${token}; httponly; maxAge: 99999`);
                         // res.header('Set-Cookie', `logued=true; maxAge: 99999`);
                         res.send({ "logged": true })
@@ -198,11 +236,42 @@ mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluste
 
 
     server.get('/receta', (req, res) => {
-        Receta.find((err, data) => {
+          
+          Receta.find({}).sort({puntuacion: 1}).exec(function(err, data) { 
+              
             if (err) res.send(err);
             res.send(data)
+
+          });
+
+    })
+    
+
+    server.get('/recetas/filter', (req, res) => {
+        let checker = (arr, target) => target.every(v => arr.includes(v));
+        const params = req.query;
+        let arrParams = Object.values(params);
+        let recetasEncontradas = [];
+        Receta.find().sort({'puntuacion': -1}).exec(function(err, data) {
+            if (err) res.send(err);
+            for (receta of data) {
+                let arrIngredientes = [];
+                receta.ingredientes.forEach((ingrediente) => {
+                    arrIngredientes.push(ingrediente._id.toString())
+                })
+
+                const result = checker(arrParams, arrIngredientes)
+                
+                if (result) {
+                    recetasEncontradas.push(receta)
+                }
+            }
+            res.send(recetasEncontradas)
+
         })
     })
+
+
     server.get('/receta/:id', (req, res) => {
         const urlObjetivo = decodeURI(req.params.id)
         Receta.find({ _id: urlObjetivo }, (err, data) => {
@@ -211,9 +280,9 @@ mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluste
         })
     })
     server.post('/receta', (req, res) => {
-       
+
         const decoded = jwt.verify(req.cookies.jwt, secrets["jwt_clave"]);
-       
+
         body = req.body;
         body['_id'] = mongoose.Types.ObjectId();
 
@@ -234,6 +303,7 @@ mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluste
     })
 
     server.put('/receta', (req, res) => {
+
         Receta.findByIdAndUpdate(
             req.body._id,
             {

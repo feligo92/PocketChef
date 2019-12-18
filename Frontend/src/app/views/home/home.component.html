@@ -1,14 +1,49 @@
-<div class="myBod">
+<div class="myBody">
 </div>
 <nav class="navbar myNavbar navbar-light">
-    <span class="navbar-brand mb-0 h1 text-center text-light myFont"> PocketChef <img class="float-left" style="width: 7vw;"
-            src="https://image.flaticon.com/icons/svg/129/129226.svg"></span>
+    <span class="navbar-brand mb-0 h1 text-center text-light myFont"> PocketChef <img class="float-left"
+            style="width: 7vw;" src="/assets/chef.png"></span>
 
 </nav>
 
+<div class="container" style="margin-top: 70px; margin-bottom: 70px; OVERFLOW: scroll; height: calc(100vh - 140px);">
+    <div class="row">
+        <div class="col-12">
+            <form #myForm="ngForm" autocomplete="off">
+                <div class="row">
+                    <!--INGREDIENTES-->
+                    <div class="autocomplete col-12">
+                        <label for="ingredientesInput">Selecciona tus ingredientes</label>
+                        <input id="ingredientesInput" class="form-control" type="text" name="ingredientesReceta"
+                            placeholder="Ingrediente" required pattern="[A-zÀ-ú]*">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 offset-8">
+                        <button type="button" (click)="addIngrediente()"
+                            class="btn btn-primary ml-2 mt-1 ml-4">Añadir</button>
+                    </div>
+                </div>
+                <p class="mt-1">Tu lista:</p>
+                <div class="cantidades row">
+
+                    <div class="col-12 tuLista ml-2">
+                        <div class="cantidades ingredientes mr-1 mt-1" [ngStyle]=" {'background-color': randomColor[i]} "
+                            (click)="removeIngrediente(i)" *ngFor="let ingrediente of userIngredientes, let i = index">
+
+                            <span>{{ingrediente}} </span>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="row nuevaReceta">
     <div class="col-12  mt-3 mb-3">
-        <div class="card" style=" height: 12vh; width: 85vw; margin-left: 28px" routerLink="/nuevareceta">
+        <div class="card" style=" height: 12vh; width: 85vw; margin-left: 28px ; border-radius: 19px" routerLink="/nuevareceta">
 
             <p class="text-center mt-4 myFont">Añade tu propia receta!</p>
 
@@ -16,19 +51,19 @@
     </div>
 </div>
 <div class="row listaReceta">
-        <div class="col-12  mt-3 mb-3">
-            <div class="card" style=" height: 12vh; width: 85vw; margin-left: 28px" routerLink="/lista">
-    
-                <p class="text-center mt-4 myFont">Lista de recetas</p>
-    
-            </div>
+    <div class="col-12  mt-3 mb-3">
+        <div class="card" style=" height: 12vh; width: 85vw; margin-left: 28px ; border-radius: 19px" routerLink="/lista">
+
+            <p class="text-center mt-4 myFont">Lista de recetas</p>
+
         </div>
     </div>
+</div>
 
 <footer class="footer myFooter">
     <div class="row">
         <div class="col-1 offset-5 mt-2 mb-3">
-            <img class="footerIcon" routerLink="/home" src="https://image.flaticon.com/icons/svg/263/263115.svg">
+            <img class="footerIcon" routerLink="/home" src="/assets/home.png">
         </div>
     </div>
 </footer>

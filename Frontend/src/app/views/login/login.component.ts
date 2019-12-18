@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,36 +10,45 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
 
+
+  loginData: object = {
+    "mail":"",
+    "password":""
+  };
+  signData: object = {
+    "userName":"",
+    "mail":"",
+    "password":""
+  };
+
+
   constructor(public _user: UserService, public _http: HttpClient) { }
   
   ngOnInit() {
   }
 
    //funcion para logear
-   postLogin() {
-    //selectores de los inputs del form
-    let mail: string = (<HTMLInputElement>document.querySelectorAll(".input_user")[0]).value;
-    let pass: string = (<HTMLInputElement>document.querySelectorAll(".input_pass")[0]).value;
-
-
-
-
-    // this._user.login(name, pass);
-    this._user.postLogin(mail, pass);
+   postLogin(form: FormControl): void {
+    
+    if (form.valid) {
+      this._user.postLogin(this.loginData); // pasar como argumento el objeto en el servicio!!!!!!!!!
+    }else{
+      console.log("error");
+    }
+    
   }
   // funcion para registrarse
-  signIn() {
+  postSign(form: FormControl): void {
     //selectores de los inputs del modal
-    let name: string = (<HTMLInputElement>document.querySelector("#defaultForm-name")).value;
-    let pass: string = (<HTMLInputElement>document.querySelector("#defaultForm-pass")).value;
-    let mail: string = (<HTMLInputElement>document.querySelector("#defaultForm-email")).value;
-    if (name != "" /*&& pass != ""*/) {
-
-      this._user.postSignIn(name, mail, pass);
-
-     
+   
+      if (form.valid) {
+        console.log(this.signData)
+        this._user.postSign(this.signData); 
+      }else{
+        console.log("error");
+      }
       
 
-    }
+    
   }
 }

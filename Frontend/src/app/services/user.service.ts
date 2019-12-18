@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +13,20 @@ export class UserService {
   error: object;
   loginError: any
   dataSign: object;
-  isLogged:string = '';
-  
-  constructor( public _http: HttpClient, public _router: Router) { 
+  isLogged: string = '';
+
+  constructor(public _http: HttpClient, public _router: Router) {
 
   }
 
-  postLogin(mail: string, pass: string) {
+  postLogin(loginData: object) {
 
     this._http.post(
       //Argumento 1: La URL
       "http://localhost:3000/login",
       //Argumento 2: Body
-      {
-        "mail": mail,
-        "password": pass
-      },
+      loginData
+      ,
       //Argumento 3: Las opciones con los headers
       { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
     )
@@ -37,12 +36,12 @@ export class UserService {
 
           this.data = result;
           console.log(this.data)
-          if(this.data['logged'] == true){
+          if (this.data['logged'] == true) {
             this.isLogged = '7ras9AS2hk';
-          if (typeof (Storage) !== 'undefined') {
-          localStorage.setItem("98asdqLKjs8", this.isLogged)
-          this._router.navigateByUrl('/home');
-        }
+            if (typeof (Storage) !== 'undefined') {
+              localStorage.setItem("98asdqLKjs8", this.isLogged)
+              this._router.navigateByUrl('/home');
+            }
           }
           ///////////set item here
         }, (error: object) => {
@@ -60,17 +59,14 @@ export class UserService {
   }
 
 
-  postSignIn(name: string, mail:string, pass: string): void {
+  postSign(signData: object): void {
 
     this._http.post(
       //Argumento 1: La URL
       "http://localhost:3000/register",
       //Argumento 2: Body
-      {
-        "mail": mail,
-        "userName": name,
-        "Password": pass
-      },
+      signData
+      ,
       //Argumento 3: Las opciones con los headers
       { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
     )
@@ -80,7 +76,7 @@ export class UserService {
         (result: object) => {
           // Handle result
           this.dataSign = result
-          
+
 
         },
         (error: object) => {

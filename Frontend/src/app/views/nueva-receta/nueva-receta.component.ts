@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { DataService } from 'src/app/services/data.service';
 import { FormControl } from '@angular/forms';
-import { Subscription, Subject } from 'rxjs';
+import { Subscription, Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nueva-receta',
@@ -13,19 +13,23 @@ export class NuevaRecetaComponent implements OnInit {
 
   subscription: Subscription;
   cantidades: string[] = [];
-
+  imgName: string = 'home.png';
 
   formData: object = {
     nombre: "",
     instrucciones: "",
     cantidades: [],
-    ingredientes: []
+    ingredientes: [],
+    puntuacion: 0,
+    imgUrl: ""
   };
 
   allIngredientes: object[] = [];
   arrNombresIngredientes: string[] = [];
   ingredientes: string[] = [];
   ingredientesParaMandar: string[] = [];
+
+  fileToUpload: File = null;
 
   constructor(public _user: UserService, public _data: DataService) {
 
@@ -154,15 +158,32 @@ export class NuevaRecetaComponent implements OnInit {
   }
 
 
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
+  uploadFileToActivity() {
+    this._data.postFile(this.fileToUpload)
+  }
+
 
   sendData(form: FormControl): void {
 
+    this.imgName = this._data.imgName
     if (form.valid) {
+      this.uploadFileToActivity()
       this.formData['cantidades'] = this.cantidades
       this.formData['ingredientes'] = this.ingredientesParaMandar
+      this.formData['imgUrl'] = `http://localhost:3500/${this.fileToUpload.name}`
       this._data.sendData(this.formData);
       console.log(this.formData)
     }
+
+    (<HTMLInputElement>document.querySelector("#nameInput")).value = '';
+    (<HTMLInputElement>document.querySelector("#cantidadesInput")).value = '';
+    (<HTMLInputElement>document.querySelector("#ingredientesInput")).value = '';
+    (<HTMLInputElement>document.querySelector("#elaboracionInput")).value = '';
+
   }
 
   addCantidad(event) {
@@ -196,6 +217,17 @@ export class NuevaRecetaComponent implements OnInit {
 
       event.preventDefault();
     }
+  }
+
+
+  removeCantidad(index: number): void {
+
+    this.ingredientes.splice(index, 1);
+    this.cantidades.splice(index, 1);
+    this.ingredientesParaMandar.splice(index, 1);
+
+    console.log(this.ingredientes, this.cantidades, this.ingredientesParaMandar)
+
   }
 
 

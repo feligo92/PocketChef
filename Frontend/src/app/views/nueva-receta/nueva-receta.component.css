@@ -32,6 +32,7 @@
     width: 100vw;
     background-size: cover;
     background-color: #dae9f6;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
    
 }
 
@@ -89,3 +90,23 @@ small.error{
 .tuLista{
     background-color: white;;
 }
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    background-color: #6d8eb2;
+  }
+  .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: red;
+    cursor: inherit;
+    display: block;
+  }
