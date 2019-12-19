@@ -28,7 +28,7 @@ export class UserService {
       loginData
       ,
       //Argumento 3: Las opciones con los headers
-      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
+      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse", "withCredentials": "true" }) }
     )
       //Nos suscribimos a la llamada
       .subscribe(
