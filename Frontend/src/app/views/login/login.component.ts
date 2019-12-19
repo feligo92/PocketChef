@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
     
     if (form.valid) {
       this._user.postLogin(this.loginData); // pasar como argumento el objeto en el servicio!!!!!!!!!
-    }else{
-      console.log("error");
     }
     
   }
@@ -42,10 +40,8 @@ export class LoginComponent implements OnInit {
     //selectores de los inputs del modal
    
       if (form.valid) {
-        console.log(this.signData)
+      
         this._user.postSign(this.signData); 
-      }else{
-        console.log("error");
       }
       
 

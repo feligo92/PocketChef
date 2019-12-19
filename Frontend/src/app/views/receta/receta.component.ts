@@ -19,10 +19,10 @@ export class RecetaComponent implements OnInit {
   constructor(public _data: DataService, public _path: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log("hola")
+   
     this.id = (this._path.snapshot.params.id)
     if (Object.entries(this.data).length === 0) {
-      this._data.llamadaGet(`http://localhost:3000/receta/${this.id}`);
+      this._data.llamadaGet(`https://my-static.ga:3000/receta/${this.id}`);
     } else {
       this.singleReceta = this.data.filter(obj => {
         return obj['_id'] === this.id
@@ -38,7 +38,7 @@ export class RecetaComponent implements OnInit {
           return obj['_id'] === this.id
         })
         this.cantidades = this.singleReceta[0]['cantidades']
-        console.log(this.singleReceta)
+       
       }
     )
   }
@@ -56,6 +56,6 @@ export class RecetaComponent implements OnInit {
 
 
     
-     this._data.puntuarPut(`http://localhost:3000/receta`, this.singleReceta)
+     this._data.puntuarPut(`https://my-static.ga:3000/receta`, this.singleReceta)
   }
 }

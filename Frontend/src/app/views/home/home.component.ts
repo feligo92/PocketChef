@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit {
     }
     this._data.addIngrediente(ingrediente);
 
-    console.log(this.userIngredientes, ingrediente)
+   
   }
 
   removeIngrediente(index: number): void {

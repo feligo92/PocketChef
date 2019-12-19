@@ -46,7 +46,7 @@ export class DataService {
 
     this._http.post(
       //Argumento 1: La URL
-      "http://localhost:3000/receta",
+      "https://my-static.ga:3000/receta",
       //Argumento 2: Body
       data
       ,
@@ -73,7 +73,7 @@ export class DataService {
   getIngredientes() {
     this._http.get(
       //Argumento 1: La URL
-      'http://localhost:3000/ingrediente',
+      'https://my-static.ga:3000/ingrediente',
       //Argumento 2: Las opciones con los headers
       { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
     )
@@ -103,14 +103,13 @@ export class DataService {
   //Subir imagen
 
   postFile(fileToUpload) {
-    const endpoint = "http://localhost:3000/upload";
+    const endpoint = "https://my-static.ga:3000/upload";
     const formData: FormData = new FormData();
     formData.append('myImg', fileToUpload, fileToUpload.name);
     this._http
       .post(endpoint, formData, { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }).subscribe(
         data => this.imgName = data['ok'],
-        error => console.log(error)
-
+       
       )
 
   }

@@ -46,7 +46,7 @@ export class NuevaRecetaComponent implements OnInit {
     this.subscription = this._data.allIngredientes.subscribe(
       (newValue) => {
         this.allIngredientes = newValue;
-        console.log(this.allIngredientes, newValue)
+      
         for (let i = 0; i < this.allIngredientes.length; i++) {
           this.arrNombresIngredientes.push(this.allIngredientes[i]['ingredienteName'])
 
@@ -174,9 +174,9 @@ export class NuevaRecetaComponent implements OnInit {
       this.uploadFileToActivity()
       this.formData['cantidades'] = this.cantidades
       this.formData['ingredientes'] = this.ingredientesParaMandar
-      this.formData['imgUrl'] = `http://localhost:3500/${this.fileToUpload.name}`
+      this.formData['imgUrl'] = `https://my-static.ga:3500/${this.fileToUpload.name}`
       this._data.sendData(this.formData);
-      console.log(this.formData)
+     
     }
 
     (<HTMLInputElement>document.querySelector("#nameInput")).value = '';
@@ -196,9 +196,7 @@ export class NuevaRecetaComponent implements OnInit {
       if (cantidad !== '' && ingrediente !== '' && flag == true) {
         this.ingredientes.push(ingrediente)
         this.cantidades.push(`${ingrediente} ${cantidad}`)
-        console.log(this.cantidades)
-        console.log(this.ingredientes)
-
+       
 
         ingredienteID = this.allIngredientes.filter(obj => {
           return obj['ingredienteName'] === ingrediente
@@ -208,11 +206,11 @@ export class NuevaRecetaComponent implements OnInit {
           this.ingredientesParaMandar.push(ingredienteID[0]['_id'])
 
         } else {
-          console.log("Ingrediente no encontrado")
+         
         }
         (<HTMLInputElement>document.querySelector("#cantidadesInput")).value = '';
         (<HTMLInputElement>document.querySelector("#ingredientesInput")).value = '';
-        console.log("Ingrediente encontrado ", ingredienteID)
+      
       }
 
       event.preventDefault();
@@ -226,7 +224,7 @@ export class NuevaRecetaComponent implements OnInit {
     this.cantidades.splice(index, 1);
     this.ingredientesParaMandar.splice(index, 1);
 
-    console.log(this.ingredientes, this.cantidades, this.ingredientesParaMandar)
+   
 
   }
 

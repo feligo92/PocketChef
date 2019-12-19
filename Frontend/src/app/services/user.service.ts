@@ -23,7 +23,7 @@ export class UserService {
 
     this._http.post(
       //Argumento 1: La URL
-      "http://localhost:3000/login",
+      "https://my-static.ga:3000/login",
       //Argumento 2: Body
       loginData
       ,
@@ -35,7 +35,7 @@ export class UserService {
         (result: object) => {
 
           this.data = result;
-          console.log(this.data)
+         
           if (this.data['logged'] == true) {
             this.isLogged = '7ras9AS2hk';
             if (typeof (Storage) !== 'undefined') {
@@ -49,11 +49,11 @@ export class UserService {
 
           if (this.error != undefined) {
 
-            console.log(this.error);
+         
 
 
           }
-          console.log(this.loginError)
+         
         }
       )
   }
@@ -63,7 +63,7 @@ export class UserService {
 
     this._http.post(
       //Argumento 1: La URL
-      "http://localhost:3000/register",
+      "https://my-static.ga:3000/register",
       //Argumento 2: Body
       signData
       ,
@@ -84,7 +84,7 @@ export class UserService {
           this.error = error;
           if (this.error["error"] != undefined) {
 
-            console.log(this.error["error"])
+           
 
           }
         }

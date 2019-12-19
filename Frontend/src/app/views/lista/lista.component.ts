@@ -41,7 +41,7 @@ export class ListaComponent implements OnInit {
 
         this.params = this.arrParams.join('&')
 
-        this._data.llamadaGet(`http://localhost:3000/recetas/filter?${this.params}`);
+        this._data.llamadaGet(`https://my-static.ga:3000/recetas/filter?${this.params}`);
       })
 
 
@@ -55,25 +55,8 @@ export class ListaComponent implements OnInit {
 
 
        
-        console.log("arrRecetas", this.arrRecetas.sort(function(a:object, b:object){return b['puntuacion']-a['puntuacion']}))
-        // while (this.arrRecetas.length !== 0) {
-        //   let a = this.arrRecetas[0]
-        //   let contador = 0
-        //   for (let i = 0; i < this.arrRecetas.length; i++) {
-        //     for (let j = 0; j < this.arrRecetas.length; j++) {
-        //       if (a['puntuacion'] <= this.arrRecetas[i]['puntuacion']) {
-        //         a = this.arrRecetas[i]
-        //         contador = i
-        //       }
-        //       this.arrRecetasOrdenadas.push(a)
-        //       this.arrRecetas.splice(contador, 1)
-        //     }
-
-        //   }
-        // }
-       
-        // //console.log("arrRecetas", this.arrRecetas)
-        // console.log("recetas encontradas",this.arrRecetasOrdenadas)
+         this.arrRecetas.sort(function(a:object, b:object){return b['puntuacion']-a['puntuacion']})
+        
       }
 
     )
