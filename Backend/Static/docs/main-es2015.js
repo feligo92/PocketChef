@@ -660,7 +660,7 @@ let UserService = class UserService {
         //Argumento 2: Body
         loginData, 
         //Argumento 3: Las opciones con los headers
-        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse", "withCredentials": "true" }) })
+        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
             //Nos suscribimos a la llamada
             .subscribe((result) => {
             this.data = result;

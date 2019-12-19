@@ -686,7 +686,7 @@ var __values = (this && this.__values) || function (o) {
                     //Argumento 2: Body
                     loginData, 
                     //Argumento 3: Las opciones con los headers
-                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse", "withCredentials": "true" }) })
+                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
                         //Nos suscribimos a la llamada
                         .subscribe(function (result) {
                         _this.data = result;
