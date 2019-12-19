@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser');//libreria para parsear cookies
 const helmet = require('helmet');
 const multer = require('multer');
 const path = require('path');
+const https = require('https')
 
 const fileUpload = require('express-fileupload');
 
@@ -341,8 +342,14 @@ mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluste
 
 
     //Listen
-    server.listen(3000, function () {
-        console.log('Servidor escuchando en el puerto 3000'.rainbow);
-    });
+    https.createServer({
+        key: fs.readFileSync('/etc/letsencrypt/live/my-static.ga/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/my-static.ga/fullchain.pem')
+      }, app)
+      .listen(3000, function () {
+        console.log('Example app listening on port 3000! Go to https://localhost:3000/')
+      })
+      
+      
 
 })

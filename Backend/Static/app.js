@@ -1,4 +1,6 @@
 const express = require ('express');
+const fs = require('fs')
+const https = require('https')
 
 const helmet = require('helmet');
 
@@ -15,6 +17,11 @@ server.use(express.static('docs'));
 
 
 //Escuchando en port
-server.listen(3400,()=>{
-    console.log(`Servidor escuchando en el puerto 3400`)
-})
+https.createServer({
+    key: fs.readFileSync('/etc/letsencrypt/live/my-static.ga/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/my-static.ga/fullchain.pem')
+  }, server)
+  .listen(443, function () {
+    console.log('Escuchando en puerto 443'.rainbow)
+  })
+  

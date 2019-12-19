@@ -16,6 +16,11 @@ server.use(express.static('uploads'));
 
 
 //Escuchando en port
-server.listen(3500,()=>{
-    console.log(`Servidor escuchando en el puerto 3500`)
-})
+https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  }, server)
+  .listen(3500, function () {
+    console.log('Escuchando en puerto 3500'.rainbow)
+  })
+  
