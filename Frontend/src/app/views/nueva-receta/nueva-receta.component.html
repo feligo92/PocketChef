@@ -91,7 +91,7 @@
                                 <textarea [(ngModel)]="formData['instrucciones']" maxlength="10000" required
                                     name="descripcion" style="height: 20vh;" class="form-control" id="elaboracionInput"
                                     aria-describedby="descriptionHelp" placeholder="Introduce los pasos a seguir"
-                                    #descripcion="ngModel" required pattern="[a-zA-Z0-9'  *']*">
+                                    #descripcion="ngModel" required >
                                     </textarea>
                                 <small *ngIf="descripcion.touched && descripcion.pristine" class="form-text error">Este
                                     campo es obligatorio</small>
