@@ -578,7 +578,7 @@ var __values = (this && this.__values) || function (o) {
                     //Argumento 1: La URL
                     url, 
                     //Argumento 2: Las opciones con los headers
-                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) })
+                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
                         //Nos suscribimos a la llamada
                         .subscribe(function (result) {
                         _this.data.next(result);
@@ -593,7 +593,7 @@ var __values = (this && this.__values) || function (o) {
                     //Argumento 2: Body
                     data, 
                     //Argumento 3: Las opciones con los headers
-                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) })
+                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
                         //Nos suscribimos a la llamada
                         .subscribe(function (result) {
                         // Handle result
@@ -607,7 +607,7 @@ var __values = (this && this.__values) || function (o) {
                     //Argumento 1: La URL
                     'https://my-static.ga:3000/ingrediente', 
                     //Argumento 2: Las opciones con los headers
-                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) })
+                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
                         //Nos suscribimos a la llamada
                         .subscribe(function (result) {
                         _this.allIngredientes.next(result);
@@ -630,7 +630,7 @@ var __values = (this && this.__values) || function (o) {
                     var formData = new FormData();
                     formData.append('myImg', fileToUpload, fileToUpload.name);
                     this._http
-                        .post(endpoint, formData, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) }).subscribe(function (data) { return _this.imgName = data['ok']; });
+                        .post(endpoint, formData, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true }).subscribe(function (data) { return _this.imgName = data['ok']; });
                 };
                 //Puntuacion
                 DataService.prototype.puntuarPut = function (url, data) {
@@ -640,7 +640,7 @@ var __values = (this && this.__values) || function (o) {
                     //Argumento 2: Body
                     data, 
                     //Argumento 3: Las opciones con los headers
-                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) })
+                    { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
                         //Nos suscribimos a la llamada
                         .subscribe(function (result) {
                         // Handle result

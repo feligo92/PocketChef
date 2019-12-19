@@ -31,7 +31,7 @@ export class DataService {
       //Argumento 1: La URL
       url,
       //Argumento 2: Las opciones con los headers
-      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
+      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true }
     )
       //Nos suscribimos a la llamada
       .subscribe(
@@ -51,7 +51,7 @@ export class DataService {
       data
       ,
       //Argumento 3: Las opciones con los headers
-      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
+      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }),withCredentials: true }
     )
       //Nos suscribimos a la llamada
       .subscribe(
@@ -75,7 +75,7 @@ export class DataService {
       //Argumento 1: La URL
       'https://my-static.ga:3000/ingrediente',
       //Argumento 2: Las opciones con los headers
-      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
+      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }),withCredentials: true }
     )
       //Nos suscribimos a la llamada
       .subscribe(
@@ -107,7 +107,7 @@ export class DataService {
     const formData: FormData = new FormData();
     formData.append('myImg', fileToUpload, fileToUpload.name);
     this._http
-      .post(endpoint, formData, { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }).subscribe(
+      .post(endpoint, formData, { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true }).subscribe(
         data => this.imgName = data['ok'],
        
       )
@@ -123,7 +123,7 @@ export class DataService {
       data
       ,
       //Argumento 3: Las opciones con los headers
-      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }) }
+      { headers: new HttpHeaders({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true }
     )
       //Nos suscribimos a la llamada
       .subscribe(

@@ -548,7 +548,7 @@ let DataService = class DataService {
         //Argumento 1: La URL
         url, 
         //Argumento 2: Las opciones con los headers
-        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) })
+        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
             //Nos suscribimos a la llamada
             .subscribe((result) => {
             this.data.next(result);
@@ -563,7 +563,7 @@ let DataService = class DataService {
         //Argumento 2: Body
         data, 
         //Argumento 3: Las opciones con los headers
-        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) })
+        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
             //Nos suscribimos a la llamada
             .subscribe((result) => {
             // Handle result
@@ -576,7 +576,7 @@ let DataService = class DataService {
         //Argumento 1: La URL
         'https://my-static.ga:3000/ingrediente', 
         //Argumento 2: Las opciones con los headers
-        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) })
+        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
             //Nos suscribimos a la llamada
             .subscribe((result) => {
             this.allIngredientes.next(result);
@@ -598,7 +598,7 @@ let DataService = class DataService {
         const formData = new FormData();
         formData.append('myImg', fileToUpload, fileToUpload.name);
         this._http
-            .post(endpoint, formData, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) }).subscribe(data => this.imgName = data['ok']);
+            .post(endpoint, formData, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true }).subscribe(data => this.imgName = data['ok']);
     }
     //Puntuacion
     puntuarPut(url, data) {
@@ -608,7 +608,7 @@ let DataService = class DataService {
         //Argumento 2: Body
         data, 
         //Argumento 3: Las opciones con los headers
-        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }) })
+        { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-with": "XMLHttpResponse" }), withCredentials: true })
             //Nos suscribimos a la llamada
             .subscribe((result) => {
             // Handle result
