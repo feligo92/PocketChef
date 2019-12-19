@@ -31,10 +31,14 @@ const secrets = JSON.parse(rawData);
 //============== SERVER =============
 const server = express();
 
-
+//Opciones de CORS
+const corsOptions = {
+    origin: 'https://my-static.ga/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 //========= Middleware ===========
 server.use(bodyParser.json());
-server.use(cors());
+server.use(cors(corsOptions));
 server.use(cookieParser());
 server.use(helmet());
 server.use(jwtChecker({   //como argumento le pasamos un objeto con la configuración
