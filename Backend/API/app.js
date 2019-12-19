@@ -19,8 +19,8 @@ server.use(express.static('uploads'));
 
 //Escuchando en port
 https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
+    key: fs.readFileSync('/etc/letsencrypt/live/my-static.ga/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/my-static.ga/fullchain.pem')
   }, server)
   .listen(3500, function () {
     console.log('Escuchando en puerto 3500'.rainbow)
