@@ -345,7 +345,7 @@ mongoose.connect(`mongodb+srv://${secrets['user']}:${secrets['password']}@cluste
     https.createServer({
         key: fs.readFileSync('/etc/letsencrypt/live/my-static.ga/privkey.pem'),
         cert: fs.readFileSync('/etc/letsencrypt/live/my-static.ga/fullchain.pem')
-      }, app)
+      }, server)
       .listen(3000, function () {
         console.log('Example app listening on port 3000! Go to https://localhost:3000/')
       })
