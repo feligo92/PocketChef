@@ -529,7 +529,7 @@ var __values = (this && this.__values) || function (o) {
                         return true;
                     }
                     else {
-                        this._router.navigateByUrl("/login");
+                        this._router.navigateByUrl("/onboarding");
                         return false;
                     }
                 };

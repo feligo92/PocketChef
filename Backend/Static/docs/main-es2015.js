@@ -493,7 +493,7 @@ let AuthGuard = class AuthGuard {
             return true;
         }
         else {
-            this._router.navigateByUrl("/login");
+            this._router.navigateByUrl("/onboarding");
             return false;
         }
     }
